@@ -1,0 +1,14 @@
+services:
+  build:
+    image: openapitools/openapi-generator-cli
+    volumes: 
+      - ./openapi.json:/config/input.json
+      - ./:/config/output
+      - ./build.sh:/config/build.sh
+    command: [
+      "generate", 
+      "-i", "https://raw.githubusercontent.com/MediaBrowser/Emby.SDK/master/Resources/OpenApi/openapi_v3.json", 
+      "-g", "python", 
+      "-o", "/config/output",
+      "-p", "packageName=embyapi"
+    ]
